@@ -1,5 +1,14 @@
 package main
-import "fmt"
+import (
+	"fmt"
+	"go-error/app/dao"
+)
 func main() {
-    fmt.Println("hello pkslow")
+	defer dao.DB.Close()
+	user ,err :=dao.QueryUserById("99999")
+	if err != nil{
+	  fmt.Printf("query user err : %+v",err)
+	  return
+	}
+	fmt.Println("query user : ",user)
 }
